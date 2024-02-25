@@ -3,7 +3,9 @@ import { Flex, Text } from '@chakra-ui/react';
 const Footer = () => {
   return (
     <Flex as="footer" width="full" justifyContent="center">
-      <Text fontSize="sm">&copy; Placeholder - {new Date().getFullYear()}</Text>
+      <Text fontSize="sm">
+        &copy; Christians in Web3 - {new Date().getFullYear()}
+      </Text>
     </Flex>
   );
 };

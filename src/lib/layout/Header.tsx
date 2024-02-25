@@ -1,4 +1,4 @@
-import { Flex, Heading } from '@chakra-ui/react';
+import { Flex, Image } from '@chakra-ui/react';
 
 import LoginButton from '~/lib/components/auth/LoginButton';
 
@@ -8,9 +8,12 @@ const Header = () => {
   return (
     <Flex as="header" width="full" align="center">
       <Flex>
-        <Heading as="h1" size="lg" letterSpacing="tight" fontWeight="bold">
-          Placeholder Logo
-        </Heading>
+        <Image
+          src="/logo.png"
+          alt="Christians in Web3"
+          width={310}
+          height={30}
+        />
       </Flex>
       <Flex marginLeft="auto" alignItems="center">
         <LoginButton />

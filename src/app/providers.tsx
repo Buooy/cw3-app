@@ -1,7 +1,6 @@
 'use client';
 
 import { CacheProvider } from '@chakra-ui/next-js';
-import { activeChain, factoryAddress } from '@config/constants';
 import {
   ThirdwebProvider,
   smartWallet,
@@ -10,9 +9,10 @@ import {
   metamaskWallet,
   phantomWallet,
   trustWallet,
-  walletConnect,s
+  walletConnect,
 } from '@thirdweb-dev/react';
 
+import { activeChain, factoryAddress } from '@config/constants';
 import { Chakra as ChakraProvider } from '~/lib/components/Chakra';
 
 const Providers = ({ children }: { children: React.ReactNode }) => {

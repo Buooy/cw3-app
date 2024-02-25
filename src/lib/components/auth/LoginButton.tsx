@@ -8,10 +8,6 @@ const LoginButton = () => {
     <ConnectWallet
       theme={colorMode === 'dark' ? 'dark' : 'light'}
       btnTitle="Sign In"
-      dropdownPosition={{
-        side: 'bottom',
-        align: 'center',
-      }}
     />
   );
 };
