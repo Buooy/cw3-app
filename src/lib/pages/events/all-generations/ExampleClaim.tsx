@@ -39,7 +39,19 @@ const ExampleClaim = ({
           website,
         }),
       });
-      await getPoap();
+
+      let interval;
+      let retries = 5;
+
+      while (poap === null && retries > 0) {
+        await new Promise((r) => setTimeout(r, 8000));
+        await getPoap();
+        if (poap) clearInterval(interval);
+
+        retries -= 1;
+      }
+
+      clearInterval(interval);
     }
     setLoading(false);
   };
@@ -65,16 +77,24 @@ const ExampleClaim = ({
         conference.
       </Text>
 
-      {poap === undefined && <Text>Loading</Text>}
+      {poap === undefined && <Text>Loading...</Text>}
       {poap === null && (
-        <Button
-          size="lg"
-          colorScheme="teal"
-          onClick={mintToWallet}
-          isLoading={loading}
-        >
-          Mint Your POAP
-        </Button>
+        <Flex flexDirection="column">
+          <Button
+            size="lg"
+            colorScheme="teal"
+            onClick={mintToWallet}
+            isLoading={loading}
+            loadingText="Minting in Progress...."
+          >
+            Mint Your POAP
+          </Button>
+          {loading && (
+            <Text mt={2} fontSize="sm">
+              This could take up to 30 seconds
+            </Text>
+          )}
+        </Flex>
       )}
       {poap && <Poap poap={poap} />}
     </Flex>
