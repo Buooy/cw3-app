@@ -40,7 +40,7 @@ const Home = () => {
               neighbors and build a better world{' '}
             </Text>
             <LoginButton
-              style={{ minWidth: '400px' }}
+              style={{ width: '400px', maxWidth: '100%' }}
               loginText="Sign In to Continue"
             />
           </Flex>
