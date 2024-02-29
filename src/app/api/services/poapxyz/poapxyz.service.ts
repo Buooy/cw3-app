@@ -10,7 +10,7 @@ class PoapXyzService {
   private apiBaseUrl = 'https://api.poap.tech';
 
   constructor() {
-    this.accessToken = getAccessToken().access_token;
+    this.accessToken = getAccessToken().access_token as string;
   }
 
   async getClaimQrCode({ hash }: { hash: string }) {
