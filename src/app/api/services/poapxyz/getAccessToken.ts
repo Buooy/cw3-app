@@ -1,0 +1,11 @@
+const getAccessToken = () => {
+  return {
+    access_token:
+      'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5qQTNOalpGUWpkRE9ESTNRa0V3UlVSRE9VVkVNRVUxT1VVd1JrSTNNRGs1TlRORVFqUTNSUSJ9.eyJpc3MiOiJodHRwczovL3BvYXBhdXRoLmF1dGgwLmNvbS8iLCJzdWIiOiJKRHVXajh2NzlCSjZsS2toOXFaNmxqdEp6ZFNPemh1T0BjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9hcGkucG9hcC50ZWNoIiwiaWF0IjoxNzA5MTczNDUyLCJleHAiOjE3MDkyNTk4NTIsImF6cCI6IkpEdVdqOHY3OUJKNmxLa2g5cVo2bGp0SnpkU096aHVPIiwic2NvcGUiOiJtaW50IiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIiwicGVybWlzc2lvbnMiOlsibWludCJdfQ.BZvzC0jMhFsGh6pJot-rXXpn38Ll3WHHGCA2KinFj9q35A_V4DumgLoa5nG6AUBBHMcjlEIgFDBkgaP9N2eYW3EHhfE6nHlyT8OAEtbjIspcG-o0-lRC617difUaxsKjiuAEqUhkvZ-TOf8PCZprdNcRT1UQUX4zxScnHN8aLb_JqQnvdD6MIRDDkhqwTRAv1QbHhGbgNNocR2P3itN275mdGRK62VK6UrdVJ0T9zi_t44FuGM-hqY-Rb9laBIqbs58Mr5r50JOarRoJkGeyqEdjw1mwi0vGIsbjQhlbmCcy9osSESEKH0mey4hsMVyRYvQdsUoYZMGia-OWuyYcHg',
+    expires_in: 86399,
+    scope: 'mint',
+    token_type: 'Bearer',
+  };
+};
+
+export default getAccessToken;

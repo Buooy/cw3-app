@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Image, Link } from '@chakra-ui/react';
 import { AiFillGithub } from 'react-icons/ai';
 
-const repoLink = 'https://github.com/sozonome/REPLACE_TEXT';
+const repoLink = 'https://github.com/sozonome/CW3';
 
 const CTASection = () => {
   return (
@@ -12,7 +12,7 @@ const CTASection = () => {
             aria-label="Deploy to Vercel"
             isExternal
             rel="noopener noreferrer"
-            href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsozonome%2FREPLACE_TEXT"
+            href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsozonome%2FCW3"
           >
             <Image
               src="https://vercel.com/button"
@@ -25,7 +25,7 @@ const CTASection = () => {
             aria-label="Deploy to Netlify"
             isExternal
             rel="noopener noreferrer"
-            href="https://app.netlify.com/start/deploy?repository=https://github.com/sozonome/REPLACE_TEXT"
+            href="https://app.netlify.com/start/deploy?repository=https://github.com/sozonome/CW3"
           >
             <Image
               src="https://www.netlify.com/img/deploy/button.svg"
@@ -39,7 +39,7 @@ const CTASection = () => {
       <Flex justifyContent="center" alignItems="center" gap={2}>
         <Button
           as="a"
-          href="https://github.com/sozonome/REPLACE_TEXT/generate"
+          href="https://github.com/sozonome/CW3/generate"
           target="_blank"
           size="sm"
         >

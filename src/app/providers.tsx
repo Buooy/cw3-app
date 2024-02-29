@@ -3,7 +3,6 @@
 import { CacheProvider } from '@chakra-ui/next-js';
 import {
   ThirdwebProvider,
-  smartWallet,
   embeddedWallet,
   coinbaseWallet,
   metamaskWallet,
@@ -11,8 +10,10 @@ import {
   trustWallet,
   walletConnect,
 } from '@thirdweb-dev/react';
+import { WagmiProvider } from 'wagmi';
 
-import { activeChain, factoryAddress } from '@config/constants';
+import { activeChain } from '@config/constants';
+import { config } from '@config/wagmi.config';
 import { Chakra as ChakraProvider } from '~/lib/components/Chakra';
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
@@ -28,13 +29,16 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
             walletConnect(),
             trustWallet(),
             phantomWallet(),
+            /*
             smartWallet(embeddedWallet(), {
               factoryAddress,
               gasless: true,
             }),
+            */
+            embeddedWallet(),
           ]}
         >
-          {children}
+          <WagmiProvider config={config}>{children}</WagmiProvider>
         </ThirdwebProvider>
       </ChakraProvider>
     </CacheProvider>

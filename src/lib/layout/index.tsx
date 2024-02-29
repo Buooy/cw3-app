@@ -13,7 +13,7 @@ type LayoutProps = {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <Flex margin="0 auto" maxWidth={800} transition="0.5s ease-out" w="full">
-      <Flex p={8} flexDirection="column" w="full">
+      <Flex p={{ base: 4, lg: 8 }} flexDirection="column" w="full">
         <Header />
         <Flex as="main" marginY={22} w="full" minHeight="calc(100vh - 180px)">
           {children}

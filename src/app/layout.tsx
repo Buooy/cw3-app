@@ -7,10 +7,10 @@ type RootLayoutProps = {
   children: React.ReactNode;
 };
 
-const APP_NAME = 'REPLACE_TEXT';
+const APP_NAME = 'CW3';
 
 export const metadata: Metadata = {
-  title: { default: APP_NAME, template: '%s | REPLACE_TEXT' },
+  title: { default: APP_NAME, template: '%s | CW3' },
   description: 'REPLACE_METADATA_TEXT',
   applicationName: APP_NAME,
   appleWebApp: {
@@ -22,12 +22,12 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    url: 'https://REPLACE_TEXT.sznm.dev',
-    title: 'REPLACE_TEXT',
+    url: 'https://CW3.cw3.global',
+    title: 'CW3',
     description: 'REPLACE_METADATA_TEXT',
     images: {
-      url: 'https://og-image.sznm.dev/**REPLACE_TEXT**.sznm.dev.png?theme=dark&md=1&fontSize=125px&images=https%3A%2F%2Fsznm.dev%2Favataaars.svg&widths=250',
-      alt: 'REPLACE_TEXT.sznm.dev og-image',
+      url: 'https://og-image.cw3.global/**CW3**.cw3.global.png?theme=dark&md=1&fontSize=125px&images=https%3A%2F%2Fcw3.global%2Favataaars.svg&widths=250',
+      alt: 'CW3.cw3.global og-image',
     },
   },
   twitter: {
