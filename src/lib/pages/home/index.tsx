@@ -1,14 +1,6 @@
 'use client';
 
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Flex,
-  Heading,
-  Text,
-} from '@chakra-ui/react';
+import { Flex, Heading, Text } from '@chakra-ui/react';
 import { useAddress } from '@thirdweb-dev/react';
 
 import ExampleClaim from '../events/all-generations/ExampleClaim';
@@ -27,7 +19,7 @@ const Home = () => {
     >
       <Flex mt={10}>
         {address ? (
-          <ExampleClaim />
+          <ExampleClaim website="test-cw3" eventId={169321} />
         ) : (
           <Flex
             flexDirection="column"
