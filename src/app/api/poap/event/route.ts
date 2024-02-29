@@ -26,8 +26,8 @@ const getPoap = async (request: NextRequest) => {
   );
 
   const response = await poapXyzService.getUserPoapByEvent({
-    address,
-    eventId,
+    address: address as `0x${string}`,
+    eventId: eventId as string,
   });
 
   return NextResponse.json(response, { status: 200 });
