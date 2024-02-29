@@ -8,26 +8,23 @@ import type { PoapData } from './Poap';
 import Poap from './Poap';
 
 const ExampleClaim = ({
-  website = 'test-cw3',
-  eventId = 169321,
+  website,
+  eventId,
 }: {
-  website?: string;
-  eventId?: number;
+  website: string;
+  eventId: number;
 }) => {
   const [loading, setLoading] = useState(false);
   const address = useAddress();
   const [poap, setPoap] = useState<PoapData | null | undefined>(undefined);
 
-  useEffect(() => {
-    const getPoap = async () => {
-      const response = await fetch(
-        `${config.baseApiUrl}/api/poap/event?address=${address}&eventId=${eventId}`
-      );
-      const data = (await response.json()) as PoapData;
-      setPoap(data.statusCode ? null : data);
-    };
-    getPoap();
-  }, []);
+  const getPoap = async () => {
+    const response = await fetch(
+      `${config.baseApiUrl}/api/poap/event?address=${address}&eventId=${eventId}`
+    );
+    const data = (await response.json()) as PoapData;
+    setPoap(data.statusCode ? null : data);
+  };
 
   const mintToWallet = async () => {
     setLoading(true);
@@ -42,10 +39,14 @@ const ExampleClaim = ({
           website,
         }),
       });
-      await response.json();
+      await getPoap();
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    getPoap();
+  }, []);
 
   return (
     <Flex
@@ -66,7 +67,12 @@ const ExampleClaim = ({
 
       {poap === undefined && <Text>Loading</Text>}
       {poap === null && (
-        <Button size="lg" colorScheme="teal" onClick={mintToWallet}>
+        <Button
+          size="lg"
+          colorScheme="teal"
+          onClick={mintToWallet}
+          isLoading={loading}
+        >
           Mint Your POAP
         </Button>
       )}

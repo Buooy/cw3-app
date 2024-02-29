@@ -38,7 +38,7 @@ const Home = () => {
             <Heading as="h1" size="2xl" mb={4} textAlign="center">
               Christians in Web3
             </Heading>
-            <Text fontSize="lg">
+            <Text fontSize="lg" mb={10}>
               Equipping all generations with innovative technologies to love our
               neighbors and build a better world{' '}
             </Text>

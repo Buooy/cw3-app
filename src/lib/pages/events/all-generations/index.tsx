@@ -18,7 +18,7 @@ const EventAllGenerations = () => {
       alignItems="center"
       w="full"
     >
-      <ExampleClaim />
+      <ExampleClaim website="test-cw3" eventId={169321} />
       {!address && (
         <Flex
           className={styles.connect}
