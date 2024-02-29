@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 
 const manifest = (): MetadataRoute.Manifest => ({
   short_name: 'CW3',
-  name: 'Next.js App Template',
+  name: 'Christians in Web3',
   lang: 'en',
   start_url: '/',
   background_color: '#FFFFFF',

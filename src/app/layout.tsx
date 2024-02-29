@@ -7,11 +7,11 @@ type RootLayoutProps = {
   children: React.ReactNode;
 };
 
-const APP_NAME = 'CW3';
+const APP_NAME = 'Christians in Web3';
 
 export const metadata: Metadata = {
-  title: { default: APP_NAME, template: '%s | CW3' },
-  description: 'REPLACE_METADATA_TEXT',
+  title: { default: APP_NAME, template: '%s | Christians in Web3' },
+  description: 'Uniting Believers in Web3',
   applicationName: APP_NAME,
   appleWebApp: {
     capable: true,
@@ -22,17 +22,15 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    url: 'https://CW3.cw3.global',
-    title: 'CW3',
-    description: 'REPLACE_METADATA_TEXT',
+    url: 'https://app.cw3.global',
+    title: 'Christians in Web3',
+    description: 'Uniting Believers in Web3',
+    /*
     images: {
       url: 'https://og-image.cw3.global/**CW3**.cw3.global.png?theme=dark&md=1&fontSize=125px&images=https%3A%2F%2Fcw3.global%2Favataaars.svg&widths=250',
-      alt: 'CW3.cw3.global og-image',
+      alt: 'Christians in Web3',
     },
-  },
-  twitter: {
-    creator: '@sozonome',
-    card: 'summary_large_image',
+    */
   },
 };
 
@@ -45,6 +43,9 @@ export const viewport: Viewport = {
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      </head>
       <body>
         <Providers>
           <Layout>{children}</Layout>

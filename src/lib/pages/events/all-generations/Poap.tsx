@@ -1,4 +1,4 @@
-import { Flex, Heading, Image, Text } from '@chakra-ui/react';
+import { Alert, AlertIcon, Flex, Heading, Image, Text } from '@chakra-ui/react';
 
 export type PoapData = {
   event: {
@@ -21,10 +21,25 @@ const Poap = ({ poap }: { poap: PoapData }) => {
         borderRadius="full"
         mb={4}
       />
-      <Text>Congratulations, you have received the</Text>
-      <Heading fontSize="lg" fontWeight="bold">
-        CW3: All Generations POAP #{poap.tokenId}
-      </Heading>
+
+      <Alert
+        status="success"
+        display="flex"
+        flexDirection="column"
+        textAlign="center"
+        px={{
+          base: 5,
+          md: 10,
+        }}
+        py={5}
+      >
+        <Text display="flex" flexDirection="row">
+          Congratulations, you have received the
+        </Text>
+        <Heading fontSize="lg" fontWeight="bold">
+          CW3: All Generations POAP #{poap.tokenId}
+        </Heading>
+      </Alert>
     </Flex>
   );
 };

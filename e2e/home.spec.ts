@@ -7,7 +7,7 @@ import { test, expect } from '@playwright/test';
 
 /** replace with env vars if needed */
 const LOCAL_HOST_URL = 'http://localhost:3000/';
-const APP_NAME = 'CW3';
+const APP_NAME = 'Christians in Web3';
 const USE_THIS_TEMPLATE_TEXT = 'Use This Template';
 const OPEN_IN_GITHUB_TEXT = 'Open in Github';
 const REPO_URL = `https://github.com/sozonome/${APP_NAME}`;

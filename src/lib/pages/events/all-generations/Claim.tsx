@@ -7,13 +7,7 @@ import config from '~/config/config';
 import type { PoapData } from './Poap';
 import Poap from './Poap';
 
-const ExampleClaim = ({
-  website,
-  eventId,
-}: {
-  website: string;
-  eventId: number;
-}) => {
+const Claim = ({ website, eventId }: { website: string; eventId: number }) => {
   const [loading, setLoading] = useState(false);
   const address = useAddress();
   const [poap, setPoap] = useState<PoapData | null | undefined>(undefined);
@@ -41,7 +35,7 @@ const ExampleClaim = ({
       });
 
       let interval;
-      let retries = 5;
+      let retries = 20;
 
       while (poap === null && retries > 0) {
         await new Promise((r) => setTimeout(r, 8000));
@@ -61,25 +55,10 @@ const ExampleClaim = ({
   }, []);
 
   return (
-    <Flex
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      my={5}
-    >
-      <Heading as="h1" size="xl" mb={4} textAlign="center">
-        Thank you for participating in CW3: All Generations Conference!
-      </Heading>
-
-      <Text textAlign="center" mb={10}>
-        You can claim a POAP NFT for attending the conference. This NFT will be
-        minted to your wallet and will be available to claim until the end of
-        conference.
-      </Text>
-
+    <Flex flexDirection="column" justifyContent="center" alignItems="center">
       {poap === undefined && <Text>Loading...</Text>}
       {poap === null && (
-        <Flex flexDirection="column">
+        <Flex flexDirection="column" textAlign="center">
           <Button
             size="lg"
             colorScheme="teal"
@@ -90,8 +69,11 @@ const ExampleClaim = ({
             Mint Your POAP
           </Button>
           {loading && (
-            <Text mt={2} fontSize="sm">
-              This could take up to 30 seconds
+            <Text mt={2} fontSize="xs">
+              This could take up to 1 minute.
+              <br />
+              If you do not see it, please refresh the page in a couple of
+              minutes
             </Text>
           )}
         </Flex>
@@ -101,4 +83,4 @@ const ExampleClaim = ({
   );
 };
 
-export default ExampleClaim;
+export default Claim;

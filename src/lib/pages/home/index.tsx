@@ -1,13 +1,18 @@
 'use client';
 
-import { Flex, Heading, Text } from '@chakra-ui/react';
+import { Flex, Heading, Spinner, Text } from '@chakra-ui/react';
 import { useAddress } from '@thirdweb-dev/react';
+import { useRouter } from 'next/navigation';
 
-import ExampleClaim from '../events/all-generations/ExampleClaim';
 import LoginButton from '~/lib/components/auth/LoginButton';
 
 const Home = () => {
+  const router = useRouter();
   const address = useAddress();
+
+  if (address) {
+    router.push('/events/all-generations');
+  }
 
   return (
     <Flex
@@ -19,7 +24,7 @@ const Home = () => {
     >
       <Flex mt={10}>
         {address ? (
-          <ExampleClaim website="test-cw3" eventId={169321} />
+          <Spinner size="lg" />
         ) : (
           <Flex
             flexDirection="column"
