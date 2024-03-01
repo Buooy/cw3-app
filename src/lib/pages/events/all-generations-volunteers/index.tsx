@@ -45,7 +45,7 @@ const EventAllGenerationsVolunteers = () => {
       </Flex>
 
       {address ? (
-        <Claim website="test-cw3" eventId={169321} />
+        <Claim website="cw3-all-generations-volunteers" eventId={169340} />
       ) : (
         <Flex
           className={styles.connect}

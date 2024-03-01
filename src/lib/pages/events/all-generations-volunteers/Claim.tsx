@@ -1,8 +1,8 @@
-import { Button, Flex, Heading, Text } from '@chakra-ui/react';
+import { Button, Flex, Text } from '@chakra-ui/react';
 import { useAddress } from '@thirdweb-dev/react';
 import { useEffect, useState } from 'react';
 
-import config from '~/config/config';
+import usePoap from '~/lib/hooks/usePoap';
 
 import type { PoapData } from './Poap';
 import Poap from './Poap';
@@ -11,35 +11,29 @@ const Claim = ({ website, eventId }: { website: string; eventId: number }) => {
   const [loading, setLoading] = useState(false);
   const address = useAddress();
   const [poap, setPoap] = useState<PoapData | null | undefined>(undefined);
+  const { getPoap, mintToWallet } = usePoap();
 
-  const getPoap = async () => {
-    const response = await fetch(
-      `${config.baseApiUrl}/api/poap/event?address=${address}&eventId=${eventId}`
-    );
-    const data = (await response.json()) as PoapData;
-    setPoap(data.statusCode ? null : data);
+  const fetchPoap = async () => {
+    if (address) {
+      const response = await getPoap({
+        address,
+        eventId,
+      });
+      setPoap(response);
+    }
   };
 
-  const mintToWallet = async () => {
+  const mint = async () => {
     setLoading(true);
     if (address) {
-      const response = await fetch(`${config.baseApiUrl}/api/poap/mint`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          address,
-          website,
-        }),
-      });
+      await mintToWallet({ address, website });
 
       let interval;
       let retries = 20;
 
       while (poap === null && retries > 0) {
         await new Promise((r) => setTimeout(r, 8000));
-        await getPoap();
+        await fetchPoap();
         if (poap) clearInterval(interval);
 
         retries -= 1;
@@ -51,7 +45,7 @@ const Claim = ({ website, eventId }: { website: string; eventId: number }) => {
   };
 
   useEffect(() => {
-    getPoap();
+    fetchPoap();
   }, []);
 
   return (
@@ -62,7 +56,7 @@ const Claim = ({ website, eventId }: { website: string; eventId: number }) => {
           <Button
             size="lg"
             colorScheme="teal"
-            onClick={mintToWallet}
+            onClick={mint}
             isLoading={loading}
             loadingText="Minting in Progress...."
           >

@@ -22,7 +22,7 @@ const EventAllGenerations = () => {
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
-        my={5}
+        mb={5}
         mx={{ base: 0, md: 5 }}
       >
         <Heading
@@ -41,6 +41,16 @@ const EventAllGenerations = () => {
           </strong>{' '}
           for attending the conference. This NFT will be minted to your wallet.
         </Text>
+        <a target="_blank" href="https://poap.xyz/" rel="noreferrer">
+          <Text
+            fontSize="sm"
+            fontStyle="italic"
+            textDecor="underline"
+            textUnderlineOffset={5}
+          >
+            What is a POAP?
+          </Text>
+        </a>
       </Flex>
 
       {address ? (
