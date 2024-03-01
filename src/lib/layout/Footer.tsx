@@ -4,7 +4,11 @@ const Footer = () => {
   return (
     <Flex as="footer" width="full" justifyContent="center">
       <Text fontSize="sm">
-        &copy; Christians in Web3 - {new Date().getFullYear()}
+        &copy;{' '}
+        <a href="https://cw3.global" target="_blank" rel="noreferrer">
+          Christians in Web3
+        </a>{' '}
+        - {new Date().getFullYear()}
       </Text>
     </Flex>
   );
