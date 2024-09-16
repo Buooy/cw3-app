@@ -25,7 +25,7 @@ const Claim = ({ website, eventId }: { website: string; eventId: number }) => {
   const mint = async () => {
     setLoading(true);
     if (address) {
-      await mintToWallet({ address, website });
+      await mintToWallet({ address, websiteOrSecret: website });
 
       let interval;
       let retries = 20;
