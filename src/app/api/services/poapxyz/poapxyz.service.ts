@@ -6,20 +6,14 @@ import config from '~/config/config';
 import getAccessToken from './getAccessToken';
 
 class PoapXyzService {
-  private accessToken: string;
-
   private apiBaseUrl = 'https://api.poap.tech';
-
-  constructor() {
-    this.accessToken = getAccessToken().access_token as string;
-  }
 
   async get({ path }: { path: string }) {
     const response = await fetch(`${this.apiBaseUrl}/${path}`, {
       headers: {
         accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${this.accessToken}`,
+        Authorization: `Bearer ${await getAccessToken()}`,
         'X-API-KEY': `${config.poapApiKey}`,
       },
     });
@@ -32,7 +26,7 @@ class PoapXyzService {
       headers: {
         accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${this.accessToken}`,
+        Authorization: `Bearer ${await getAccessToken()}`,
         'X-API-KEY': `${config.poapApiKey}`,
       },
       body: JSON.stringify(body),
@@ -44,6 +38,26 @@ class PoapXyzService {
   async getClaimQrCode({ hash }: { hash: string }) {
     return this.get({
       path: `actions/claim-qr?qr_hash=${hash}`,
+    });
+  }
+
+  async getEventById(eventId: string): Promise<PoapEvent> {
+    return (await this.get({
+      path: `events/id/${eventId}`,
+    })) as PoapEvent;
+  }
+
+  async getUserPoaps({
+    address,
+  }: {
+    address: `0x${string}`;
+  }): Promise<PoapData[]> {
+    if (!ethers.utils.isAddress(address)) {
+      throw new Error('Invalid address');
+    }
+
+    return this.get({
+      path: `actions/scan/${address}`,
     });
   }
 
@@ -75,25 +89,11 @@ class PoapXyzService {
     }
 
     return this.post({
-      path: 'actions/mint',
+      path: 'website/claim',
       body: {
         address,
         website,
       },
-    });
-  }
-
-  async getUserPoaps({
-    address,
-  }: {
-    address: `0x${string}`;
-  }): Promise<PoapData[]> {
-    if (!ethers.utils.isAddress(address)) {
-      throw new Error('Invalid address');
-    }
-
-    return this.get({
-      path: `actions/scan/${address}`,
     });
   }
 }

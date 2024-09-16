@@ -19,7 +19,7 @@ async function getPoaps({ address }: { address: string }) {
     return [];
   }
 
-  const response = await fetch(`/api/poap/${address}`, {
+  const response = await fetch(`/api/poap/user?address=${address}`, {
     cache: 'no-store',
   });
   return response.json();
@@ -46,7 +46,7 @@ const Profile = () => {
       </Heading>
       <Grid templateColumns="repeat(3, 1fr)" gap={3}>
         {poaps.map((poap: PoapData) => {
-          if (poap.event.name.toLowerCase().includes('test')) return null;
+          // if (poap.event.name.toLowerCase().includes('test')) return null;
           return (
             <GridItem
               key={poap.event.id}

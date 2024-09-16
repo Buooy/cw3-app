@@ -12,10 +12,17 @@ const usePoap = () => {
     eventId: number;
   }) => {
     const response = await fetch(
-      `${config.baseApiUrl}/api/poap/event?address=${address}&eventId=${eventId}`
+      `${config.baseApiUrl}/api/poap/user?address=${address}&eventId=${eventId}`
     );
     const data = (await response.json()) as PoapData;
     return data.statusCode ? null : data;
+  };
+
+  const getEventById = async (eventId: string): Promise<PoapEvent> => {
+    const response = await fetch(
+      `${config.baseApiUrl}/api/poap/events/id/${eventId}`
+    );
+    return (await response.json()) as PoapEvent;
   };
 
   /**
@@ -23,10 +30,10 @@ const usePoap = () => {
    */
   const mintToWallet = async ({
     address,
-    website,
+    websiteOrSecret,
   }: {
     address: string;
-    website: string;
+    websiteOrSecret: string;
   }) => {
     if (address) {
       const response = await fetch(`${config.baseApiUrl}/api/poap/mint`, {
@@ -36,7 +43,7 @@ const usePoap = () => {
         },
         body: JSON.stringify({
           address,
-          website,
+          website: websiteOrSecret,
         }),
       });
       return response.json();
@@ -46,6 +53,7 @@ const usePoap = () => {
 
   // Set of returns
   return {
+    getEventById,
     getPoap,
     mintToWallet,
   };
