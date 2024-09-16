@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ethers } from 'ethers';
 
 import config from '~/config/config';
@@ -13,18 +14,37 @@ class PoapXyzService {
     this.accessToken = getAccessToken().access_token as string;
   }
 
-  async getClaimQrCode({ hash }: { hash: string }) {
-    const response = await fetch(
-      `${this.apiBaseUrl}/actions/claim-qr?qr_hash=${hash}`,
-      {
-        headers: {
-          Authorization: `Bearer ${this.accessToken}`,
-          'X-API-KEY': `${config.poapApiKey}`,
-        },
-      }
-    );
+  async get({ path }: { path: string }) {
+    const response = await fetch(`${this.apiBaseUrl}/${path}`, {
+      headers: {
+        accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.accessToken}`,
+        'X-API-KEY': `${config.poapApiKey}`,
+      },
+    });
+    return response.json();
+  }
+
+  async post({ path, body }: { path: string; body: Record<string, any> }) {
+    const response = await fetch(`${this.apiBaseUrl}/${path}`, {
+      method: 'POST',
+      headers: {
+        accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.accessToken}`,
+        'X-API-KEY': `${config.poapApiKey}`,
+      },
+      body: JSON.stringify(body),
+    });
 
     return response.json();
+  }
+
+  async getClaimQrCode({ hash }: { hash: string }) {
+    return this.get({
+      path: `actions/claim-qr?qr_hash=${hash}`,
+    });
   }
 
   async getUserPoapByEvent({
@@ -38,18 +58,9 @@ class PoapXyzService {
       throw new Error('Invalid address');
     }
 
-    const response = await fetch(
-      `${this.apiBaseUrl}/actions/scan/${address}/${eventId}`,
-      {
-        headers: {
-          accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${this.accessToken}`,
-          'X-API-KEY': `${config.poapApiKey}`,
-        },
-      }
-    );
-    return response.json();
+    return this.get({
+      path: `actions/scan/${address}/${eventId}`,
+    });
   }
 
   async mintToWallet({
@@ -63,21 +74,27 @@ class PoapXyzService {
       throw new Error('Invalid address');
     }
 
-    const response = await fetch(`${this.apiBaseUrl}/website/claim`, {
-      method: 'POST',
-      headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${this.accessToken}`,
-        'X-API-KEY': `${config.poapApiKey}`,
-      },
-      body: JSON.stringify({
+    return this.post({
+      path: 'actions/mint',
+      body: {
         address,
         website,
-      }),
+      },
     });
+  }
 
-    return response.json();
+  async getUserPoaps({
+    address,
+  }: {
+    address: `0x${string}`;
+  }): Promise<PoapData[]> {
+    if (!ethers.utils.isAddress(address)) {
+      throw new Error('Invalid address');
+    }
+
+    return this.get({
+      path: `actions/scan/${address}`,
+    });
   }
 }
 

@@ -11,7 +11,8 @@ const Home = () => {
   const address = useAddress();
 
   if (address) {
-    router.push('/events/all-generations');
+    router.push(`/profile/${address}`);
+    return null;
   }
 
   return (

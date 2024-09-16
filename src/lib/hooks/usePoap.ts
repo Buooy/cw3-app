@@ -1,4 +1,3 @@
-import type { PoapData } from '../pages/events/all-generations/Poap';
 import config from '~/config/config';
 
 const usePoap = () => {
