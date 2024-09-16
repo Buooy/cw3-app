@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 
 import usePoap from '~/lib/hooks/usePoap';
 
-import type { PoapData } from './Poap';
 import Poap from './Poap';
 
 const Claim = ({ website, eventId }: { website: string; eventId: number }) => {

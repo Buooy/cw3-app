@@ -1,15 +1,5 @@
 import { Alert, AlertIcon, Flex, Heading, Image, Text } from '@chakra-ui/react';
 
-export type PoapData = {
-  event: {
-    id: number;
-    name: string;
-    image_url: string;
-  };
-  tokenId: string;
-  statusCode?: number;
-};
-
 const Poap = ({ poap }: { poap: PoapData }) => {
   return (
     <Flex justifyContent="center" alignItems="center" flexDirection="column">
