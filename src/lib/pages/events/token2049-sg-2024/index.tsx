@@ -12,7 +12,7 @@ const EventToken2049SG2024 = () => {
   const address = useAddress();
   const event = {
     id: 178059,
-    secret: 'TOKEN2049SG',
+    secret: 'regen-gathering-2024',
     title: 'Regen Gathering - TOKEN2049 SG',
   };
 
